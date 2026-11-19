@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>设备识别跳转</title>
     <script>
+        const DEFAULT_PAGE = "https://www.baidu.com/";
+
         function getQueryParams() {
             const params = new URLSearchParams(window.location.search);
+            const aPage = params.get('a') || DEFAULT_PAGE;
             return {
-                aPage: params.get('a') || '默认A页面URL', // 默认值
-                bPage: params.get('b') || '默认B页面URL'  // 默认值
+                aPage: aPage,
+                bPage: params.get('b') || aPage
             };
         }
 
@@ -27,7 +30,7 @@
             }
             // 其他设备
             else {
-                window.location.href = aPage || "https://www.baidu.com/"; // 默认跳转到 A 页面
+                window.location.href = aPage; // 默认跳转到 A 页面
             }
         }
     </script>
